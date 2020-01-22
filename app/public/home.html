@@ -97,8 +97,9 @@ var newFriend = {
   preferences: [$("#question1").val(), $("#question2").val(), $("#question3").val(), $("#question4").val(), $("#question5").val()]
 };
 
+const currentURL = window.location.origin
 
-$.post("/api/friends", newFriend)
+$.post(currentURL + "/api/friends", newFriend)
 .done(function(data) {
   $("#match-name").text(data.name);
 });
