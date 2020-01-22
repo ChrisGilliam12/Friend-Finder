@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Friend Finder</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+      <form role="form" id="friend-form">
+        <div class="form-group">
+          <label for="">Name<span>*</span></label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="">Link to Photo<span style="color: red">*</span></label>
+          <input type="text" class="form-control" id="phone" required>
+        </div>
+
+        <h3>Question 1</h3>
+        
+        <select class="custom-select" id="question1">
+          <option disabled selected>Select an option</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <h3>Question 2</h3>
+        
+        <select class="custom-select" id="question2">
+          <option disabled selected>Select an option</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <h3>Question 3</h3>
+        
+        <select class="custom-select" id="question3">
+          <option disabled selected>Select an option</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <h3>Question 4</h3>
+        
+        <select class="custom-select" id="question4">
+          <option disabled selected>Select an option</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <h3>Question 5</h3>
+        
+        <select class="custom-select" id="question5">
+          <option disabled selected>Select an option</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <button type="submit"  id="add-btn" class="btn btn-primary submit" data-toggle="modal" data-target=".bd-example-modal-lg">Submit</button>
+      </form>
+    </div>
+  </div>
+
+<div>
+    <h4>Your new best Friend is</h4>
+    <h3 id ="match-name"></h3>
+</div>
+
+<script type="text/javascript">
+
+$("#add-btn").on("click", function(event) {
+event.preventDefault();
+var newFriend = {
+  name: $("#name").val().trim(),
+  photo: $("#phone").val().trim(),
+  preferences: [$("#question1").val(), $("#question2").val(), $("#question3").val(), $("#question4").val(), $("#question5").val()]
+};
+
+
+$.post("/api/friends", newFriend)
+.done(function(data) {
+  $("#match-name").text(data.name);
+});
+});
+
+
+</script>
+</body>
+</html>
